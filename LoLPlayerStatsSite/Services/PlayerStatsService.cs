@@ -33,7 +33,7 @@ namespace LoLPlayerStatsSite.Services
             catch (Exception ex)
             {
                 _log.LogError(ex, $"Message: {ex.Message}. Method: {MethodBase.GetCurrentMethod().Name ?? ""}.");
-                throw new Exception("An error occurred while fetching champion ratings.", ex);
+                throw new Exception("An error occurred while fetching user.", ex);
             }
         }
     }

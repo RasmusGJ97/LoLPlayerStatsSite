@@ -33,7 +33,7 @@ namespace LoLPlayerStatsSite.Service
             catch (Exception ex)
             {
                 _log.LogError(ex, $"Message: {ex.Message}. Method: {MethodBase.GetCurrentMethod().Name ?? ""}.");
-                throw new Exception("An error occurred while fetching champion ratings.", ex);
+                throw new Exception("An error occurred while creating a champion rating.", ex);
             }
         }
 
@@ -47,7 +47,7 @@ namespace LoLPlayerStatsSite.Service
             catch (Exception ex)
             {
                 _log.LogError(ex, $"Message: {ex.Message}. Method: {MethodBase.GetCurrentMethod().Name ?? ""}.");
-                throw new Exception("An error occurred while fetching champion ratings.", ex);
+                throw new Exception("An error occurred while deleting a champion rating.", ex);
             }
         }
 
@@ -85,7 +85,7 @@ namespace LoLPlayerStatsSite.Service
             catch (Exception ex)
             {
                 _log.LogError(ex, $"Message: {ex.Message}. Method: {MethodBase.GetCurrentMethod().Name ?? ""}.");
-                throw new Exception("An error occurred while fetching champion ratings.", ex);
+                throw new Exception("An error occurred while fetching a champion rating.", ex);
             }
         }
 
@@ -106,7 +106,7 @@ namespace LoLPlayerStatsSite.Service
             catch (Exception ex)
             {
                 _log.LogError(ex, $"Message: {ex.Message}. Method: {MethodBase.GetCurrentMethod().Name ?? ""}.");
-                throw new Exception("An error occurred while fetching champion ratings.", ex);
+                throw new Exception("An error occurred while updating champion ratings.", ex);
             }
         }
 
