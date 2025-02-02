@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
-using LoLPlayerStatsSite.Db.AppDbContext;
 using LoLPlayerStatsSite.RiotAPI;
 using LoLPlayerStatsSite.RiotAPI.DTOs;
-using LoLPlayerStatsSite.Service;
-using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace LoLPlayerStatsSite.Services

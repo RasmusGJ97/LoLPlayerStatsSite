@@ -2,8 +2,6 @@
 using LoLPlayerStatsSite.Components.Pages.ChampionSelectPage.Model;
 using LoLPlayerStatsSite.Db.AppDbContext;
 using LoLPlayerStatsSite.Db.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -26,18 +24,8 @@ namespace LoLPlayerStatsSite.Service
         {
             try
             {
-                ChampionRating newRating = new ChampionRating
-                {
-                    ChampionName = newChampionRating.ChampionName,
-                    MyRating = newChampionRating.MyRating,
-                    ToLearn = newChampionRating.ToLearn,
-                    Lane = newChampionRating.Lane,
-                    ChampionImg = newChampionRating.ChampionImg,
-                    Notes = newChampionRating.Notes
-                };
-
-                //ChampionRating newRating = new ChampionRating();
-                //_mapper.Map(newChampionRating, newRating);
+                ChampionRating newRating = new ChampionRating();
+                _mapper.Map(newChampionRating, newRating);
 
                 await _context.ChampionRatings.AddAsync(newRating);
                 return true;
@@ -105,8 +93,6 @@ namespace LoLPlayerStatsSite.Service
         {
             try
             {
-                //var existingRating = await GetSingleChampionRatingAsync(championRatingToUpdate.Id);
-
                 if (existingRating != null)
                 {
                     _mapper.Map(championRatingToUpdate, existingRating);

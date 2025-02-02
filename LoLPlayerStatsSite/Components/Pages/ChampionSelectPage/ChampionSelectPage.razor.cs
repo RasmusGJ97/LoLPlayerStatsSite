@@ -1,5 +1,4 @@
-﻿
-using LoLPlayerStatsSite.Db.Models;
+﻿using LoLPlayerStatsSite.Db.Models;
 using LoLPlayerStatsSite.Service;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;

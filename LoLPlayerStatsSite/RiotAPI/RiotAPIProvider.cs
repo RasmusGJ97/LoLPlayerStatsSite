@@ -21,6 +21,7 @@ namespace LoLPlayerStatsSite.RiotAPI
         {
             try
             {
+                // Two variables for debugging purposes
                 var apiKey = _config["RiotAPIkey:API-key"];
                 var apiBaseAddress = _config["RiotAPIkey:BaseAddress"];
 

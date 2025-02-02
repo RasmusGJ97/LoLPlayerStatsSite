@@ -1,5 +1,4 @@
-﻿using LoLPlayerStatsSite.RiotAPI;
-using LoLPlayerStatsSite.RiotAPI.DTOs;
+﻿using LoLPlayerStatsSite.RiotAPI.DTOs;
 using LoLPlayerStatsSite.Services;
 using Microsoft.AspNetCore.Components;
 

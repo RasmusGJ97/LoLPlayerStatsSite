@@ -1,6 +1,5 @@
 ﻿using LoLPlayerStatsSite.Components.Pages.ChampionSelectPage.Model;
 using LoLPlayerStatsSite.Db.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace LoLPlayerStatsSite.Service
 {
