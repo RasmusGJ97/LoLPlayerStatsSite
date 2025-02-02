@@ -1,0 +1,37 @@
+﻿@page "/"
+
+<PageTitle>PlayerStats</PageTitle>
+
+
+<div class="card p-4 shadow-sm" style="max-width: 400px;">
+    <h5 class="card-title">Search for Player</h5>
+    <hr />
+
+    <div class="mb-3">
+        <label class="form-label"><strong>Player Name:</strong></label>
+        <InputText @bind-Value="_searchGameName" class="form-control" placeholder="Enter player name..." />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label"><strong>Player Tag:</strong></label>
+        <InputText @bind-Value="_searchGameTag" class="form-control" placeholder="Enter player tag..." />
+    </div>
+
+    <button @onclick="GetSingleUserFromNameAndTag" class="btn btn-primary w-100">
+        <i class="bi bi-search"></i> Search
+    </button>
+</div>
+
+@if(!string.IsNullOrEmpty(_riotGetUserResponseDto.puuid))
+{
+    <div class="card mt-4 shadow-sm" style="max-width: 400px;">
+        <div class="card-body">
+            <h5 class="card-title">Player Information</h5>
+            <hr />
+            <p><strong>PUUID:</strong><br /> @_riotGetUserResponseDto.puuid</p>
+            <p><strong>Game Name:</strong><br /> @_riotGetUserResponseDto.gameName</p>
+            <p><strong>Tag Line:</strong><br /> @_riotGetUserResponseDto.tagLine</p>
+        </div>
+    </div>
+}
+

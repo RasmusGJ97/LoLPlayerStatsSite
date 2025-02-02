@@ -1,0 +1,67 @@
+﻿
+
+<div class="modal fade" id="ChampionSelectModal" tabindex="-1" aria-labelledby="ChampionSelectModalLabel" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ChampionSelectModalLabel">@(SelectedChampionRating == 0 ? "Lägg till ny" : "Ändra") rating</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @onclick="async () => await ResetForm()"></button>
+            </div>
+            
+            <EditForm Model="_championSelectFormModel" FormName="ChampionRatingForm" OnValidSubmit="async () => await CreateOrUpdateChampionRating()">
+                <DataAnnotationsValidator />
+                <div class="modal-body">
+
+                    <ValidationMessage For=@(() => _championSelectFormModel.ChampionName) />
+                    <div class="input-group input-group-sm mb-2">
+                        <span class="input-group-text col-3">Champion Name</span>
+                        <InputText type="text" id="ChampionName" name="ChampionName" @bind-Value="@_championSelectFormModel.ChampionName" class="form-control"/>
+                    </div>
+
+                    <ValidationMessage For=@(() => _championSelectFormModel.Lane) />
+                    <div class="input-group input-group-sm mb-2">
+                        <span class="input-group-text col-3">Lane</span>
+                        <InputSelect type="text" id="Lane" name="Lane" @bind-Value="@_championSelectFormModel.Lane" class="form-control">
+                            <option value="">Select lane . . .</option>
+                            <option value="Top">Top</option>
+                            <option value="Jungle">Jungle</option>
+                            <option value="Mid">Mid</option>
+                            <option value="Bot">Bot</option>
+                            <option value="Support">Support</option>
+                        </InputSelect>
+                    </div>
+
+                    <ValidationMessage For=@(() => _championSelectFormModel.MyRating) />
+                    <div class="input-group input-group-sm mb-2">
+                        <span class="input-group-text col-3">My Rating</span>
+                        <InputNumber type="text" id="MyRating" name="MyRating" @bind-Value="@_championSelectFormModel.MyRating" class="form-control" />
+                    </div>
+
+                    <ValidationMessage For=@(() => _championSelectFormModel.Notes) />
+                    <div class="input-group input-group-sm mb-2">
+                        <span class="input-group-text col-3">Notes</span>
+                        <InputTextArea type="text" id="Notes" name="Notes" @bind-Value="@_championSelectFormModel.Notes" class="form-control" />
+                    </div>
+
+                    <ValidationMessage For=@(() => _championSelectFormModel.ChampionImg) />
+                    <div class="input-group input-group-sm mb-2">
+                        <span class="input-group-text col-3">Champion Image</span>
+                        <InputText type="text" id="ChampionImg" name="ChampionImg" @bind-Value="@_championSelectFormModel.ChampionImg" class="form-control" />
+                    </div>
+
+                    <ValidationMessage For=@(() => _championSelectFormModel.ToLearn) />
+                    <div class="form-check form-check-inline mb-2" style="margin-left: 20px;">
+                        <input class="form-check-input" type="checkbox" id="ToLearn" name="ToLearn" @onchange="@(e => ToggleToLearn())" bind="@_championSelectFormModel.ToLearn" checked="@_championSelectFormModel.ToLearn" />
+                        <label class="form-check-label" for="ToLearn">To Learn</label>
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-end">
+                        <button type="button" class="btn btn-warning me-2" data-bs-dismiss="modal" @onclick="async() => await ResetForm()">Avbryt</button>
+                        <button type="submit" class="btn btn-primary">@(SelectedChampionRating == 0 ? "Lägg till" : "Ändra")</button>
+                    </div>
+
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>

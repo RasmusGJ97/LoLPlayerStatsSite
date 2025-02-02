@@ -1,0 +1,93 @@
+﻿@page "/championSelectPage"
+@using LoLPlayerStatsSite.Db.Models
+@using LoLPlayerStatsSite.Components.Pages.ChampionSelectPage.Components
+
+<PageTitle>ChampionSelector</PageTitle>
+
+<div class="add-button mb-2">
+    <RadzenButton Text="Lägg till" data-bs-toggle="modal" data-bs-target="#ChampionSelectModal">
+        <i class="fas fa-plus me-2"></i>Lägg till
+    </RadzenButton>
+</div>
+
+<div class="filter-buttons">
+    <RadzenButton Text="All" Click="@( () => ApplyFilter("All") )" />
+    <RadzenButton Text="Top Lane" Click="@( () => ApplyFilter("Top") )" />
+    <RadzenButton Text="Jungle" Click="@( () => ApplyFilter("Jungle") )" />
+    <RadzenButton Text="Mid Lane" Click="@( () => ApplyFilter("Mid") )" />
+    <RadzenButton Text="Bot Lane" Click="@( () => ApplyFilter("Bot") )" />
+    <RadzenButton Text="Support" Click="@( () => ApplyFilter("Support") )" />
+</div>
+
+
+<RadzenDataGrid AllowFiltering="false" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.Advanced"
+                AllowSorting="true" PageSize="5" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                Data="@_filteredChampionRatings" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or" SelectionMode="DataGridSelectionMode.Single"
+                SelectedItem="@_selectedChampionRating">
+    <Columns>
+        <RadzenDataGridColumn Title="Champion Image" Property="ChampionImg" Width="160px" Sortable="false">
+            <HeaderTemplate>
+                <strong>Champion Image</strong>
+            </HeaderTemplate>
+            <Template Context="data">
+                @if (!string.IsNullOrEmpty(data.ChampionImg))
+                {
+                    <RadzenImage Path="@data.ChampionImg" Width="100px" Height="100px" />
+                }
+                else
+                {
+                    <span>No Image</span>
+                }
+            </Template>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn Title="Champion Name" Property="ChampionName" Width="160px" Sortable="true">
+            <HeaderTemplate>
+                <strong>Champion Name</strong>
+            </HeaderTemplate>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn Title="Lane" Property="Lane" Width="160px" Sortable="true">
+            <HeaderTemplate>
+                <strong>Lane</strong>
+            </HeaderTemplate>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn Title="My Rating" Property="MyRating" Width="120px" Sortable="true" SortOrder="SortOrder.Descending">
+            <HeaderTemplate>
+                <strong>My Rating</strong>
+            </HeaderTemplate>
+        </RadzenDataGridColumn>  
+        
+        <RadzenDataGridColumn Title="Notes" Property="Notes" Width="120px" Sortable="false">
+            <HeaderTemplate>
+                <strong>Notes</strong>
+            </HeaderTemplate>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn Title="To Learn" Property="ToLearn" Width="100px" Sortable="true">
+            <HeaderTemplate>
+                <strong>To Learn</strong>
+            </HeaderTemplate>
+            <Template Context="data">
+                <RadzenCheckBox Value="data.ToLearn" Disabled="true" />
+            </Template>
+        </RadzenDataGridColumn>  
+        
+        <RadzenDataGridColumn Title="" Property="" Width="80px" Sortable="false">
+            <HeaderTemplate>                
+            </HeaderTemplate>
+            <Template Context="item">
+                <RadzenIcon Icon="edit" Style="cursor: pointer; margin-right: 10px;" @onclick="() => SelectCROpenModal(item.Id)" />
+                <RadzenIcon Icon="delete" Style="cursor: pointer; color: red;" @onclick="() => DeleteChampionRating(item)" />
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+
+<ChampionSelectModal
+    SelectedChampionRating="@_selectedChampionRating"
+    OnChampionRatingCreated="async () => await OnChampionRatingCreateSuccess()"
+    OnChampionRatingCHanged="async () => await OnChampionRatingChangeSuccess()"
+    OnResetForm="ResetForm"
+></ChampionSelectModal>
