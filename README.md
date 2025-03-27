@@ -7,3 +7,5 @@ Stat tracking part is currently under development.
 - More api request from Riot games API are under development.
 
 You can add and track your ratings on champions in different lanes, add notes to them and also add if you want to learn to play them or not, and more. Currently all ratings are being saved in a local db.
+
+UNDER DEVELOPMENT
